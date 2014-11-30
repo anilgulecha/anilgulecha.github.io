@@ -1,0 +1,6 @@
+# General Jekyll Config
+highlighter: pygments
+url: http://www.gulecha.org
+lsi: false
+exclude: [LICENSE, CNAME, README.md, .gitignore, Gemfile, Gemfile.lock]
+permalink: /:year/:month/:day/:title

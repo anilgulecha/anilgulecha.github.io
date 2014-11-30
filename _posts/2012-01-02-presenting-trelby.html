@@ -1,0 +1,51 @@
+---
+layout: post
+title: Presenting Trelby (and it's history)
+date: 2012-01-02 09:17:57.000000000 +05:30
+categories:
+- filmmaking
+- tech
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>Today we announce <a href="http://www.trelby.org" target="_blank">Trelby</a>. This post documents how it came about, from my perspective.</p>
+<h3>The Backstory</h3>
+<p>Around mid-2011, when I decided to make a film, I went around searching for a <em>simple</em>, <em>free</em>, <em>multiplatform</em> screenwriting software. Note the three adjectives.</p>
+<p>As an Ubuntu user, I needed something multiplatform. I did not want to switch my OS just to write a screenplay.</p>
+<p>I needed a program that would be fast and easy to use. Hey, I like bells and whistles as much as the next person, but a screenwriter also needs to get out of your way and let you write.</p>
+<p>And I'm an free software enthusiast. I like the freedom of being able to tinker with my software, of not having to wait for the BIGCORP, INC overlords to deign my feature request worthy of attention.</p>
+<h3>The Past</h3>
+<p>So, I went around on a google hunt. And the software that came the closest? <a href="http://www.celtx.com">Celtx</a>.</p>
+<p><em>Celtx</em> is pretty good. It is multiplatform. It's free, and it has a lot of bells and whistles.</p>
+<p>It's good enough that I wrote my first film with it.</p>
+<p>But <em>celtx</em> was never simple. It had quirks. It did not look right. It provided limited configurablily of the interface. It called itself open source, but the build-sauce was difficult, and you needed to jump through hoops to work on it. It was tied to the company's services. PDF functionality wasn't built into the software! It was on a remote server, so you had to have an internet connection to generate a PDF.. I never understood that! And I could not disable the distracting bottom bar, that always showed the latest news update and things.</p>
+<p>And it grew slooowww. Longer screenplays would start crawling. The editor would update in jerks, like you were magically typing words, and not letters. Granted I use a netbook, but a screenwriter is just a text editor! It should <em>not</em> require a supercomputer to run properly.</p>
+<p>Being a little disappointed with this option, I searched for others.</p>
+<p>There were none. <em>Final Draft</em> seemed to be the "standard" but  it cost  a lot. (And I mean a LOT).</p>
+<p>The search did lead me to many tiny little gems. The most memorable one was called <em><a href="www.vim.org/scripts/script.php?script_id=2447">Pago</a></em>. A vim script, that modified vim into a screenwriter. I now had <em>fast</em> and <em>multiplatform</em>. But not simple. <em>Pago</em> only had the (limited) intelligence to format the text to screenplay style, but that was it. However, it had one thing over <em>Celtx</em> - simple offline PDF generation. And I had settled on <em>Pago</em> for my then screenwriting needs.</p>
+<p>So I forked a project on Github, and created a <a href="https://github.com/anilgulecha/Pago">Pago repository</a>. And while I was on github.. why not search for "screenwriting". With the thousands of project on there, perhaps there would be some other Pago like tiny solutions.</p>
+<p>And so I discovered <a href="https://github.com/oskusalerma/blyte">Blyte</a>. "Chanced" might be a better word. Talk about hitting gold.</p>
+<p>Years ago <a href="http://www.oskusoft.com/blyte.shtml">Osku Salerma</a> had entered the fray of  screenwriting software, creating a very well written piece of free, simple, multiplatform software. But it's revenue stream did not justify the time spent on it, and it was killed. Thankfully, it was made open. Osku created the github repository, and pushed the code in. This code has since been in hibernation.</p>
+<p>Blyte had not show up on my extensive google searches. I suspect it hadn't in Kent Tessman's searches either, <a href="http://www.kenttessman.com/2011/02/the-lack-of-alternatives/">who grew tired</a> of the incumbent playing field as well, and set out to create <a href="www.fadeinpro.com">Fade In Pro</a>, which is multiplatform and simple, but not free!</p>
+<h3>The Present</h3>
+<p>In October, I started working on Blyte. It was written in python! I installed the wxpython libraries, and ran the program, wondering how a five year old codebase would've aged.</p>
+<p>(beat)</p>
+<p>It worked! the colors looked odd, the interface seemed a little clunky, and the ancient widget library did not look great on Ubuntu.</p>
+<p>But it ran without issues. And it was good. It had full PDF support (including font embedding). It was lightning fast. It was configurable. It had a tiny little fancy features too.</p>
+<p>And the big three-adjective hole in free software was filled. I got in touch with Osku, who had not looked at Blyte in years, but enthusiastically agreed to take up maintaining Blyte's modern fork: Trelby. (it took a while to settle on a name!)</p>
+<h3>The Future</h3>
+<p>Trelby is polished Blyte, with many (many!) additional features, a clean uncluttered interface, ported to the current generation libraries.</p>
+<p>In my initial discussions with Osku, here's what he wrote about Blyte's dormancy:</p>
+<blockquote><p>The main problem, I suppose, is that the intersection of "people who care about screenwriting programs" and "people who can code" is quite small, so the potential pool of developers is tiny.</p></blockquote>
+<p>I can attest to that statement. With all my frantic searching for a good alternative I ran across very few developers. By and large, screenwriters are Joe Consumers.</p>
+<p>But to the people in that tiny intersection: Find a feature lacking in Trelby? Why not join the Trelby team, and help <a href="http://www.trelby.org/contribute" target="_blank">improve it</a>?</p>

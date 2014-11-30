@@ -1,0 +1,50 @@
+---
+layout: post
+title: NCP 3+
+date: 2010-10-21 11:52:18.000000000 +05:30
+categories:
+- Illumos
+- Nexenta
+- Opensolaris
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _wp_old_slug: ''
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>The past few months have been quite hectic for the Nexenta project, and upstream OpenSolaris in general. A fork, <a href="http://www.illumos.org">Illumos</a>, has become the new home of the OpenSolaris community. We've also been deciding on how to better work with userland upstream, and what that is going to be.</p>
+<p>Below are specifics about various components.<strong></strong></p>
+<p><strong>Illumos</strong></p>
+<p>NCP4 will start using <a href="https://www.illumos.org/projects/illumos-gate">Illumos-gate</a> as the base. The current build is b147.</p>
+<p><strong>Userland</strong></p>
+<p>We've had multiple discussions on which userland to choose going ahead.. the options being Ubuntu LTS or Debian. In the initial phase, we have decided to use Debian Sid as the base. (This isn't set in stone.. but given the effort invested in this direction <a href="http://stormos.org/node/2330">by StormOS</a>, it makes sense to utilise these packages).</p>
+<p>Also Nexenta will no longer remain a full Debian/Ubuntu port.</p>
+<p>The NCP project was started to provide a familiar system to a Linux user migrating to OpenSolaris, to get the advantages ZFS, Dtrace, and other technologies. This involved providing</p>
+<ul>
+<li> The apt package system. SVR4 was too different to be comfortable</li>
+<li>GNU commands. Sun's command line was different, and did not support the same switches that a linux user would be familiar to.</li>
+</ul>
+<p>The latter of the above is no longer true. Over the past 5 years, the OpenSolaris commandline has improved, and added support for these missing switches, and is generally the same as GNU command set.</p>
+<p>So NCP4 will default to using Illumos commands by default. It will also default to the Illumos libraries and packages provided by Illumos. We will be closer to an upstream in active development, and optimised for solaris.</p>
+<p>As to the userland, StormOS has made significant progress in porting many Debian sid base packages. We intend to work with these packages to get basic NCP4 going. The initial focus of NCP will be to port enough package to build a solid ZFS platform. Binaries provided by Illumos will be packages. Those packages not provided by Illumos (apt/dpkg/etc) will be ported from Debian/Ubuntu. The GNU build tools will be ported.</p>
+<p>So, NCP4 will</p>
+<ul>
+<li>Be an Illumos based distribution</li>
+<li>Use Illumos command by default</li>
+<li>Packages and libraries provided by Illumos</li>
+<li>Port any other required packages from Debian.</li>
+<li>/usr/bin - Largely Illumos commands.</li>
+</ul>
+<p><strong>SUN_PERSONALITY</strong></p>
+<p>NCP has long had the SUN_PERSONALITY environment switch that allowed for forcing a Sun Solaris environment. This was via a patch to execv. This feature of NCP will be discarded. While it provided for a way to shift between commandline ecosystems earlier, it was a hackish solution, and in light of the above changes, no longer makes sense.</p>
+<p>NCP will, as ever, be fully open to community development. Build your favourite package, and make it available via the repository. This time around we also have the powerful <a href="http://www.nexenta.org/projects/autobuilder">auto-builder</a>.</p>
+<p><strong>Join in</strong></p>
+<p>If you have any questions, feel free to join into the discussion on the <a href="http://lists.sonic.net/mailman/listinfo/gnusol-devel">developer mailing list</a>, and our IRC room at #nexenta on freenode. And stay tuned for more updates.</p>

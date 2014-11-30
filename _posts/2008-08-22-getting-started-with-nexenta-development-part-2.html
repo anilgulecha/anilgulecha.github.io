@@ -1,0 +1,75 @@
+---
+layout: post
+title: Getting started with Nexenta Development - Part 2
+date: 2008-08-22 15:24:49.000000000 +05:30
+categories:
+- Nexenta
+- Opensolaris
+- tech
+- ubuntu
+tags:
+- debian
+- Nexenta
+- Opensolaris
+- ubuntu
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>In this part we will take a look at the steps followed to port an application from Ubuntu and build a package.</p>
+<p>I decided to do this via a screencast. You may not be able to fastforward or rewind, so I've also listed out the steps you will need to follow below the screencast. Click below to open the screencast. Or download it for offline viewing <a href="http://www.nexenta.org/screencasts/scr01.zip">here</a>.</p>
+<p>[caption id="" align="aligncenter" width="576" caption="Getting started with Nexenta screencast"]<a href="http://www.nexenta.org/screencasts/nex_scr_01.html" target="_blank"><img title="Getting started with Nexenta screencast" src="assets/screencast.gif?imgmax=576" alt="Getting started with Nexenta screencast" width="576" height="432" /></a>[/caption]</p>
+<p><strong>Getting Access</strong></p>
+<p>We have a build machine available at gnusolaris.org where you can login to do your nexenta development (and not have to hassle with installing locally). You will use ssh to login, and can get the details by asking on IRC (<a href="http://nexenta.org/chat" target="_blank">#nexenta@freenode</a>), or on the development mailing list <a href="http://lists.sonic.net/mailman/listinfo/gnusol-devel" target="_blank">gnusol-devel@sonic.net</a>.</p>
+<p><strong>Logging in</strong></p>
+<p>You can login using your favourite shell and terminal program. The screencast uses gnome-terminal. If you are on Windows you can use the <a href="http://www.putty.org" target="_blank">Putty</a> client. Use</p>
+<blockquote><p>ssh username@gnusolaris.org</p></blockquote>
+<p>and enter the password when prompted.</p>
+<p><strong>Entering the Devzone</strong></p>
+<p>One of the core features of opensolaris is <a href="http://en.wikipedia.org/wiki/Solaris_Containers" target="_blank">Zones</a> (zfs is currently stealing all the thunder). Since giving root access to everyone is not an option, and building without it is not one either, the Nexenta project has innovated and created the so called development zones. These provide a method to quickly create a developer environment and give you root access to it. When no longer required, this zone can be painlessly removed.</p>
+<p>The commands sure would be complex.. right? As simple as</p>
+<ul>
+<li>devzone_create  --- creates a development zone</li>
+<li>devzone_enter --- enter a devzone</li>
+<li>devzone_free --- remove the zone when no longer required :)</li>
+</ul>
+<p>Simple as that.</p>
+<p>Once you have entered a newly created zone, use the following commands to get it up to date</p>
+<blockquote><p>apt­-get update; APT_CLONE_ENV=1 apt-­get dist­-upgrade</p></blockquote>
+<p>Also, you will have to create/import your gpg key for signing packages. Further instructions at <a href="http://www.nexenta.org/os/CreatePublicGPGKey" target="_blank">http://www.nexenta.org/os/CreatePublicGPGKey</a></p>
+<p><strong>Building a package</strong></p>
+<p>So now that we have our environment ready, lets build a package. In the screencast we take an example of libid3tag, which is a C library that is used to parse the headers in mp3 files.</p>
+<p>First check if the package is available in the repository (Well libid3tag is not, but you would need to check if the package you are trying to port is already in or not)</p>
+<blockquote><p>#apt-cache search <em>package</em></p>
+<p>Searched for the expression <em>package</em> in the repository and lists the matches if present.</p></blockquote>
+<p>If it doesnt exist, you get it from Ubuntu's repostiory mirror using the apt-upstream-tool</p>
+<blockquote><p>#apt-upstream-tool -e -p <em>package</em></p>
+<p>-e : extract the package</p>
+<p>-p : the package name</p></blockquote>
+<p>Once we have the sources.. move into the directory, there would be 2 copies.. one original, and one for us to edit and use.</p>
+<p>Move into this directory (this is referred to as the "package root") and make sure the changelog reflects the distro as Nexenta. You can edit the changelog entry using</p>
+<blockquote><p>#debchange</p></blockquote>
+<p>in the package root.</p>
+<p>Next satisfy all the build dependencies of the package.. this is required if the package has to built. Do this via running the following command in the package root.</p>
+<blockquote><p>#apt-satisfydepends</p></blockquote>
+<p>The above tool will lookup all dependencies and install them from the repository if available. (If not, you would also have to port that package)</p>
+<p>Once the above completes successfully, create the package using</p>
+<blockquote><p>#dpkg-buildpackage -sa</p></blockquote>
+<p>-sa : Bundle the source code with the package</p>
+<p>If the above completes successfully, you will be presented with a prompt to enter your GPG passphrase to sign the package.</p>
+<p>Once this is done your package is built and present in the parent directory to the package root. Install all .deb files to verify that they install correctly. Do this using</p>
+<blockquote><p>#dpkg -i packagename.deb</p></blockquote>
+<p>You can also take a look at the contents of the deb using</p>
+<p>#dpkg-deb -c *.deb</p>
+<p>Once the install goes smoothly and all looks good, upload it to the repository using</p>
+<p>#dput *.changes</p>
+<p>This will upload the files to the repository, and send out mails to the nexenta-changes mailing list.</p>
+<p>Further information is availabe on the Nexenta wiki <a href="http://www.nexenta.org/os/Documentation" target="_blank">documentation</a> section and at <a href="http://www.nexenta.org/os/BuildingPackages" target="_blank">http://www.nexenta.org/os/BuildingPackages</a></p>

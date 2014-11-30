@@ -1,0 +1,32 @@
+---
+layout: post
+title: XFCE on Nexenta
+date: 2009-01-27 13:40:03.000000000 +05:30
+categories:
+- Nexenta
+- Opensolaris
+tags:
+- ncp2
+- xfce
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>Last time I talked about a desktop on NCP, it was about <a href="http://www.gulecha.org/2009/01/08/gnome-on-ncp2/" target="_blank">Gnome</a>. Continuing work on the desktop by community members in Nexenta now allows for XFCE on NCP2.</p>
+<p>[caption id="" align="aligncenter" width="221" caption="XFCE on NCP2, Click to see full size"]<a href="http://img259.imageshack.us/img259/5007/xfce4diffbackgroundgx8.png"><img title="XFCE on NCP2" src="assets/xfcesmallok4.png" alt="XFCE on NCP2, Click to see full size" width="221" height="166" /></a>[/caption]</p>
+<p>To get this desktop running on your Nexenta install, run</p>
+<blockquote><p>﻿apt-get install xorg<br />
+#configure X (or copy a working xorg.conf file over)<br />
+Xorg -configure<br />
+apt-get install xfce4</p></blockquote>
+<p>Once done, you can start the desktop runnign startx. To install a login manager, run</p>
+<blockquote><p>apt-get install gdm</p></blockquote>
+<p>Come over to <a href="http://www.nexenta.org/chat" target="_blank">#nexenta</a>, and give your thanks to <a href="http://www.uptonconsulting.com/" target="_blank">Jason</a> (wavejumper) who has been working on XFCE packages.</p>

@@ -1,0 +1,50 @@
+---
+layout: post
+title: ! 'Ubuntu and Asus EEEpc: Optimizing your netbook experience'
+date: 2010-09-08 01:40:09.000000000 +05:30
+categories:
+- tech
+- ubuntu
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _wp_old_slug: ''
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>[caption id="" align="alignright" width="240" caption="Asus EEE"]<img class=" " title="Asus EEE PC" src="assets/asuseeepc1005ham1005hah.jpg" alt="Asus EEE PC" width="240" height="227" />[/caption]</p>
+<p>I recently became the owner of an Asus 1005HA netbook. It's a nice lightweight little machine, that runs spiffy, and looks good.</p>
+<p>It came installed with Windows XP by default, and I replaced that with Ubuntu Netbook Remix. Well (EasyPeasy, actually.. but it's just UNR + some additional apps). Below are various mods I made to make the netbook interface much better, and more useful.</p>
+<ul>
+<li>The gnome-panel in the Netbook interface is locked.. so you cannot add additional items, nor remove unnecessary ones. To fix this follow the instructions on <a href="http://maketecheasier.com/unlock-gnome-panel-in-ubuntu-netbook-edition-une/2010/04/25">this page</a>.</li>
+<li>The applet I wanted to add was <a href="http://sshmenu.sourceforge.net/">sshmenu</a>. As a lot of my work is on multiple remote machines, this applet is a must have. apt-get install sshmenu-gnome should install this applet.</li>
+<li>A Thinkpad T61 being my other machine, I missed the dedicated middle-click a lot on the Eee. Follow the instructions <a href="http://linuxaleph.blogspot.com/2008/11/mapping-middle-click-to-keyboard-key.html">here</a> to map the useless menu button to middle click (Need to add a script to startup applications).</li>
+<li> Multitouch. Though the Eee has a multitouch capable touchpad, it is not enabled by default. Just append the following to the startup script you wrote in the previous step:</li>
+</ul>
+<blockquote><p># Now setup multitouch<br />
+sleep 2<br />
+xinput set-int-prop "SynPS/2 Synaptics TouchPad" "Two-Finger Scrolling" 8 1<br />
+xinput set-int-prop "SynPS/2 Synaptics TouchPad" "Synaptics Two-Finger Scrolling" 8 1 1<br />
+xinput set-int-prop "SynPS/2 Synaptics TouchPad" "Synaptics Two-Finger Pressure" 32 10<br />
+xinput set-int-prop "SynPS/2 Synaptics TouchPad" "Synaptics Two-Finger Width" 32 8</p></blockquote>
+<ul>
+<li>Install sshfs, and <a href="http://www.ad-comp.be/public/projets/pysshfs/pysshfs">pysshfs</a> for remote access to filesystems.</li>
+<li>Uninstall Tomboy notes. Install Gnotes.. much faster.</li>
+<li>Mic wont work with Skype. There's 2 mics on the Eee.. and apparently the fix is to zero volume on one. <a href="http://ubuntuforums.org/showpost.php?p=8628076&amp;postcount=6">This</a> and <a href="http://ubuntuforums.org/showpost.php?p=8628076&amp;postcount=9">this</a> post helped me get it working.</li>
+<li>Grab the Lucida/Mac fonts from the net and set your <em>Appearance</em> settings to use these at Size 9. Looks good.</li>
+<li>Install games for when you have a few minutes to kill. I setup some online multiplayer games like Frozen-bubble, Teeworlds, Gtetrinet. There's a whole bunch of games out there.</li>
+<li>Install Pidgin, tsclient, vnc if you are an IRC user, and work remotely.</li>
+<li>Firefox default eats up some screen estate. Install the addons <a href="https://addons.mozilla.org/en-US/firefox/addon/1530/">AutoHideStatusbar</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/1865/">AdBlock Plus</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/4762/">Hide Menubar</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/26/">Download StatusBar</a>. These will free up space. Also get rid of the bookmarks bar (View &gt; Toolbars &gt; Uncheck Bookmarks)</li>
+<li>Install <a href="http://do.davebsd.com/preview.shtml">gnome-do</a>. All your actions are now Win + Spacebar away. (<em>apt-get install gnome-do</em>)</li>
+<li>Install Audacious as the music player : <em>apt-get install audacious</em>.</li>
+<li>Install VLC and mplayer from <a href="https://help.ubuntu.com/community/Medibuntu">Medibuntu</a>.</li>
+<li>Disable unnecessary items from Preferences &gt; Startup applications. In my case these were Bluetooth, Check for New Hardware, Ubuntu One, Update Notifier, Visual Assistance.</li>
+</ul>
+<p>With these changes, your netbook is a meaner, more efficient version of itself. If there's some other things you've done to customize your Eee, leave a comment.</p>

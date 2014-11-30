@@ -1,0 +1,31 @@
+---
+layout: post
+title: Viewing dependencies graphically on apt based systems
+date: 2008-08-11 10:33:50.000000000 +05:30
+categories:
+- Nexenta
+- Opensolaris
+- ubuntu
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>In trying to figure out how to create packages for <a href="http://www.nexenta.org">Nexenta</a>, I felt the need at multiple times to view the entire tree of dependencies for a package. A little bit of googling and I found that it is pretty simple.</p>
+<p>The apt-cache command can be used to view dependencies graphically.</p>
+<p>You will need to have the <strong>graphviz</strong> package installed for this.</p>
+<blockquote><p>$apt-cache dotty packagename &gt; /tmp/dotfile<br />
+$dot -Tgif -o packagename.gif /tmp/dotfile</p></blockquote>
+<p>The complete dependency tree for the package packagename will be displayed in the file generated.</p>
+<p>From the apt-cache manpage:</p>
+<blockquote><p>"The resulting nodes will have several shapes; normal packages are boxes, pure provides are triangles, mixed provides are diamonds, missing packages are hexagons. Orange boxes mean recursion was stopped [leaf packages], blue lines are pre-depends, green lines are conflicts."</p></blockquote>
+<p>An example for the hspell package:</p>
+<p><img title="hspell dependencies" src="assets/hspellcr2.gif" alt="hspell dependencies" width="429" height="451" /></p>

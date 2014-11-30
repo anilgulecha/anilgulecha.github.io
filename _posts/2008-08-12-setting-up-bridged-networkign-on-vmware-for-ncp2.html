@@ -1,0 +1,31 @@
+---
+layout: post
+title: Setting up bridged networking on vmware for ncp2
+date: 2008-08-12 06:23:02.000000000 +05:30
+categories:
+- Nexenta
+- Opensolaris
+- tech
+- ubuntu
+tags:
+- networking
+- Nexenta
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>I had a little trouble setting up VMware to share the host's (Ubuntu) nic interface eth0 (with static ip) with the guest ncp2.</p>
+<p>Follow the instrucions here to setup a VMware install: <a href="http://http://www.nexenta.org/os/Getting_Started" target="_blank">http://www.nexenta.org/os/Getting_Started </a></p>
+<p>When you need to pass network settings, for a static IP configuration on the host, follow the below steps.</p>
+<p>Lets say the guest is setup as</p>
+<blockquote><p>IP:192.168.1.2, with netmask 255.255.255.0 and router 192.168.1.1</p></blockquote>
+<p>Then host needs to be</p>
+<blockquote><p>IP: 192.168.1.3 (or 4 or 5..), with netmask 255.255.255.0 and router 192.168.1.1</p></blockquote>

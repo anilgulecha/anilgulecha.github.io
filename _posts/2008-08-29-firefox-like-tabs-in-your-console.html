@@ -1,0 +1,37 @@
+---
+layout: post
+title: Firefox like tabs in your console
+date: 2008-08-29 09:54:35.000000000 +05:30
+categories:
+- tech
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p><a href="http://www.gnu.org/software/screen/" target="_blank">GNU screen</a> is an extremely useful utility when used on remote machines. If you have a flaky net connection that disconnects often, it can be a boon.</p>
+<p><strong>What do mean: "tabs"?</strong></p>
+<p>GNU screen emulates a terminal, using your default shell. You start it by simply running</p>
+<blockquote><p>$screen</p></blockquote>
+<p>You get a welcome message and to a working shell. This is your open "tab" or screen. To start a new tab, enter the keys <em>Ctrl-a + c</em> (control-a followed by c). This opens a new tab with an empty shell. the first shell is "0", second is "1" and so on.</p>
+<p>To move to shell X, use <em>Ctrl-a + X</em>.. so to go back to the first shell, i hit <em>Ctrl-a + 0</em>.</p>
+<p>To scroll up in the tab, when text has run through the screen, press Ctrl+[ , and you are now in scroll mode: you can use the arrow keys, home, end, pgup and pgdown, etc to scroll on the screen. <em>Esc</em> closes the scroll mode.</p>
+<p><strong>Screens are persistent</strong></p>
+<p>So your network was reset and you connection to the remote server lost. Worry not, screen is still running up there. Login to your account again, and run</p>
+<blockquote><p>screen -x</p></blockquote>
+<p>This will attach to your old screen session, and your wordspace and opened tabs are all present :)</p>
+<p>You may always want to start off with <em>screen -x</em> initially. If no session exist, this will report an error and you can start a new session using <em>screen</em>. If one does you will attach to it. If more than one does they will all be listed and you can attach to any one of those.</p>
+<p><strong>Multiplayer mode</strong></p>
+<p>This feature of attaching to open screen sessions isn't restricted to you alone. Another user logged into the system can also enter screen -x, and join you. You can both now collaborate on the screen! This is extrememly useful when you need the help of another person to get something done.. and you get to see live as they do their thing.</p>
+<p>So, hope I've sold you on screen. Use it. The official page is on <a href="http://www.gnu.org/software/screen/" target="_blank">GNU.org</a>, but its probably alreayd a part of your system or available in your distributions package repository.</p>
+<p>Screenshots should be listed at <a href="http://images.google.co.in/images?num=50&amp;q=GNU+screen+screenshot" target="_blank">google's result</a>.</p>
+<p>Default key bindings for various tasks are <a href="http://www.delorie.com/gnu/docs/screen/screen_8.html" target="_blank">here</a> and the manpage is <a href="http://www.linuxmanpages.com/man1/screen.1.php" target="_blank">here</a>.</p>
+<p>[<em>update</em>: To get a bar at the bottom of the console to list all windows + other details, take a look at the guide at <a href="http://www.redhatmagazine.com/2007/09/27/a-guide-to-gnu-screen/" target="_blank">redhatmagazine.com</a>]</p>

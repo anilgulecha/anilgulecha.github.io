@@ -1,0 +1,42 @@
+---
+layout: post
+title: Setting up Wordpress-MU for an organization
+date: 2008-08-11 10:37:57.000000000 +05:30
+categories:
+- Nexenta
+- tech
+tags: []
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>I figured I'd write this guide for those who have certain needs to setup a blogging infrastructure for an organization.</p>
+<p>I've joined the Nexenta project and one of my first tasks was to setup blogs and a planet. The requirements were thus:</p>
+<ul>
+<li>Ability to blog (yes!)</li>
+<li>A place to aggregate feeds (aka "Planet")</li>
+</ul>
+<p>My first choice was <a href="http://mu.wordpress.org" target="_blank">Wordpress Mu</a>, given that I already had experience with WP. Setting it up was easy.. below is a quick overview of what I did:</p>
+<ul>
+<li>Login to ssh.. and create a directory for blogs.nexenta.org.</li>
+<li>Setup the apache virtual host config for the above.</li>
+<li>Create a mysql database and a username/pass to access it.</li>
+<li>Get and extract the wpmu latest into this directory.</li>
+<li>Add a couple lines to /.htaccess</li>
+<li>Launch via the browser, and enter db and blog details.. and you're done :)</li>
+</ul>
+<p>Now to setup the planet.. install the following</p>
+<ul>
+<li><a href="http://firestats.cc/wiki/WPMUPluginCommander" target="_blank">Plugin Commander</a> (To easily manage plugins sitewide)</li>
+<li><a href="http://wordpress.org/extend/plugins/feedwordpress/">FeedWordpress</a> (For our planet feature)</li>
+<li><a href="http://www.herod.net/dypm/">Did you pass math</a> (To scare away the nasty spammers)</li>
+</ul>
+<p>Set FeedWordpress to post feeds directly, and check for new content every 10-20 minutes. When you give it feed links of services like blogspot, be sure to pass RSS feeds rather than ATOM.</p>
+<p>Add a few themes and your blogging platform is ready to serve.</p>

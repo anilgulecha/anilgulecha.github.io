@@ -1,0 +1,36 @@
+---
+layout: post
+title: Getting OpenChronos building on Ubuntu 11.04
+date: 2011-08-30 22:27:12.000000000 +05:30
+categories:
+- tech
+- ubuntu
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>[caption id="" align="alignright" width="300" caption="The Chronos kit"]<img title="Chronos" src="assets/EZ430-Chronos.png" alt="Chronos" width="300" height="300" />[/caption]</p>
+<p>".. and how to avoid the pain"</p>
+<p>TI was running a deal, and I snagged myself a <a href="http://processors.wiki.ti.com/index.php/EZ430-Chronos?DCMP=Chronos&amp;HQS=Other+OT+chronoswiki">Chronos ez430</a>. It's an excellent low power dev. platform, and you can program your watch! How cool is that?</p>
+<p>However, my enthusiasm was constantly battling the dismal state of information online on building <a href="https://github.com/poelzi/OpenChronos/">OpenChronos</a> (a fork of the official Chronos firmware, so you don't have to use the restrictive and proprietary TI compilers, and stick with good ol' gcc!).</p>
+<p><strong>mspgcc4, not mspgcc</strong></p>
+<p>These are two different projects. <a href="http://mspgcc4.sf.net">mspgcc4</a> is what you use to build OpenChronos. <a href="http://mspgcc.sf.net">mspgcc</a> will NOT work (unless you port the codebase. <em><strong>Update</strong>: done. see below!</em>). mspgcc4 is also deprecated and no longer maintained. There are no official packages on Ubuntu. The source will not build on Ubuntu 11.04. There is no binary tarball (that i could find) anywhere. Long story short.. you really tear your hair trying to figure out a way to get OpenChronos to build.</p>
+<p>I reached out to a bunch of folks who have forked OpenChronos on github,to see if any of them are on Ubuntu, and if they could share their compiler set. <a href="http://github.com/rdmiller3">rdmiller3</a> responded, and I now have the pleasure of sharing this binary build widely.</p>
+<p>Download <a href="http://www.filedude.com/download/GFMCwGHYNycfa1fe5ad1">msp430-gcc-4.4.5_gdb_7.2.tar.bz2</a> [<a href="http://bayfiles.com/file/TFZ/xylQSf/msp430-gcc-4.4.5_gdb_7.2.tar.bz2">mirror</a>] for Ubuntu 11.04 -x86.</p>
+<p><strong>Building OpenChronos</strong></p>
+<p>It's as simply as grabing the copy from github, make config, and make!</p>
+<p>I have some ideas on how I want to change the firmware. I'll hopefully get time to work on it.</p>
+<p><strong>Centralizing the Information</strong></p>
+<p>I've been considering throwing up a wiki to organize all the information there is on the platform, in one accessible place. If you are a Chronos developer what do you think?</p>
+<p>[<em><strong>update</strong></em>] : <a href="http://github.com/dobfek">dobfek</a> successfully got mspgcc4 to build on Ubuntu 11.04, and sent across <a href="http://pastebin.com/CWQJajCF">these instructions</a>.</p>
+<p>[<em><strong>update 2</strong></em>] : not 24 hours have passed, and i found out work was afoot to port to mspgcc. I've merged these changes into my <a href="https://github.com/anilgulecha/OpenChronos">github fork</a>. Thanks to Angelo Arrifano. You can install the mspgcc package from <a href="http://tinyprod.net/debian-dev/">this repository</a> on Ubuntu 11.04.</p>
+<p>[<em><strong>update 3</strong></em>] : All of us OpenChronos devs are rallying around at the <a title="OpenChronos group" href="http://groups.google.com/group/openchronos">google group</a>. It's <em>the</em> place to get answers or collaborate on Chronos development.The current effort is to make the code structure more modular, so you don't have to edit a bunch of files to get your app in there. It's shaping up well!</p>

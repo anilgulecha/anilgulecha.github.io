@@ -1,0 +1,35 @@
+---
+layout: post
+title: Lightweight Wiki, modified
+date: 2008-11-15 19:03:37.000000000 +05:30
+categories:
+- random
+- tech
+tags:
+- pawfaliki
+- tech
+- wiki
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>Recently I had been hunting around the web for a very lightweight, simple to use, flat file using, php based wiki. And I managed to find one. It's called<strong> Pawfaliki</strong></p>
+<p>[caption id="" align="aligncenter" width="318" caption="Pawfaliki"]<a href="http://www.pawfal.org"><img title="Pawfaliki" src="assets/pawfalvn9.gif" alt="" width="318" height="259" /></a>[/caption]</p>
+<p>This wiki package is under 50 kb in size, has an easy to use wiki syntax, is CSS based, and has a very cool dark look. It matched my needs almost perfectly.</p>
+<p>Test it out at <a href="http://www.pawfal.org/index.php" target="_blank">www.pawfal.org</a></p>
+<p><strong>Fancy URLs</strong></p>
+<p>One minor nit I had was how the URL looked.. for example the About page would look like</p>
+<blockquote><p>http://www.pawfal.org/index.php?page=About</p></blockquote>
+<p>rather than a nice wiki like</p>
+<blockquote><p>http://www.pawfal.org/About</p></blockquote>
+<p>So like any good FOSS denizen, I went ahead and implemented small changes for this. Get the modified sources: <a href="http://www.gulecha.org/incoming/pawfaliki052-modified.tar.gz" target="_blank">pawfaliki052-modified.tar.gz</a></p>
+<p>If you'd like to see the changes, get the diff for the original package at <a href="https://sourceforge.net/tracker/index.php?func=detail&amp;aid=2198338&amp;group_id=116140&amp;atid=673840" target="_blank">this bug</a> I raised. (Note, I've renamed pawfaliki.php to index.php, and added a .htaccess file). The changes would go in if theres another release (the last one was a while back).</p>
+<p>So there. Give this very small wiki package a try.</p>

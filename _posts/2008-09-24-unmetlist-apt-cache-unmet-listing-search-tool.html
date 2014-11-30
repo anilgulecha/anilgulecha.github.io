@@ -1,0 +1,49 @@
+---
+layout: post
+title: ! 'Unmetlist: apt-cache unmet listing search tool'
+date: 2008-09-24 06:41:13.000000000 +05:30
+categories:
+- Nexenta
+- Opensolaris
+- tech
+- ubuntu
+tags:
+- apt-cache
+- debian
+- Nexenta
+- ubuntu
+- unmetlist
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>To put into use my newbie python skills, I wrote a tool that searches the output of apt-cache unmet -i</p>
+<p>When populating a newly built repository, I often run into instances where I want to find all the unbuilt packages that depend on kdelibs, or all packages that have openoffice as a dependency. In general I want to know if what packages wont build without X.</p>
+<p>So I wrote <em>unmetlist</em>. This will help debian/equivalent and apt developers list out packages that aren't built, and required in the repository. It can look for (reverse) dependencies, suggests, etc. The difference between apt-cache's inbuilt search and this tool is that apt-cache searches for the exact package name specified, where as <em>unmetlist</em> searches for the pattern (so kde will match kde-code, kde-libs, etc).</p>
+<blockquote><p>root@oahu:~/src/work3# ./unmetlist<br />
+Ver 0.1<br />
+Usage<br />
+./unmetlist &lt;option&gt;  &lt;package&gt; &lt;unmet_listing_file&gt;<br />
+Option can be one of the following<br />
+search : search for the &lt;package&gt; in listing and print full listing<br />
+depends : find dependencies of &lt;package&gt;<br />
+rdepends : find which packages depend on &lt;package&gt;<br />
+suggests : find suggested packages for &lt;package&gt;<br />
+rsuggests : find which packages suggest &lt;package&gt;<br />
+recommends : find recommended packages for &lt;package&gt;<br />
+rrecommends : find which packages recommend &lt;package&gt;</p></blockquote>
+<p>To run it first generate the unmet listing using</p>
+<blockquote><p>apt-cache unmet -i &gt; /tmp/unmetfile</p></blockquote>
+<p>and use as follows</p>
+<blockquote><p>./unmetlist rdepends openoffice /tmp/unmetfile</p></blockquote>
+<p>Its still new had edges, but it works.</p>
+<p>Get the tool <a href="http://www.gulecha.org/incoming/unmetlist_v0.1" target="_blank">here</a>. (right click&gt;save as..) and be sure to chmod +x the file. Let me know if you find this useful, have suggestions, or want to request a feature.</p>
+<p>Oh, and python is a pleasure to work with. String processing has never been easier :)</p>

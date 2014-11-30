@@ -1,0 +1,41 @@
+---
+layout: post
+title: SMF support for your favorite server applications
+date: 2008-12-01 14:22:10.000000000 +05:30
+categories:
+- Nexenta
+- Opensolaris
+- tech
+- ubuntu
+tags:
+- Nexenta
+- smf
+status: publish
+type: post
+published: true
+meta:
+  _wp_old_slug: smf-support-for-your-favorite-serverapplications
+  _edit_last: '1'
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>I putback new packages into the NCP2 repository today, and you can now have SMF support for your favorite server packages in the repository. Before I list them, a little bit on SMF.</p>
+<p><strong>Service Management Framework (SMF)</strong></p>
+<p>SMF is the opensolaris replacement for the legacy services start unix framework (what /etc/init.d did until now, and continues to on Linux).</p>
+<p>Services in Nexenta are handled using <a href="http://www.sun.com/bigadmin/content/selfheal/smf-quickstart.jsp" target="_blank">solaris SMF</a>. This makes it very easy to start and stop services; you dont have to worry about it’s dependency on other services, which is taken care of by SMF automatically. This <a href="http://docs.alkaloid.net/index.php/SMF_Cheatsheet" target="_blank">cheetsheet</a> lists how easy it is to use SMF.</p>
+<p><strong>SMFed Packages</strong></p>
+<ul>
+<li>apache2</li>
+<li>mysql 5</li>
+<li>postgresql-8.3</li>
+<li>exim4</li>
+<li>rsync</li>
+</ul>
+<p>All of these are ports of their Ubuntu 8.04 counterparts.</p>
+<p>If you want toadd SMF support to a Nexenta package, take a look at my guide on <a href="http://www.gulecha.org/2008/10/23/adding-smf-support-to-your-debian-package/" target="_blank">adding SMF support</a>.</p>
+<p>If you want to follow the latest in the nexenta codebase, bookmark this <a href="http://mailbucket.org/nexentachanges.xml" target="_blank">RSS feed</a>. This is also visible on the <a href="http://blogs.nexenta.org" target="_blank">planet homepage</a>, if you frequent there. If you run into any issues, ping us on the -devel mailing list or on <a href="http://www.nexenta.org/chat" target="_blank">#nexenta@freenode</a></p>
+<p><em>[Comments by clicking <a href="http://www.gulecha.org/2008/12/01/smf-support-for-your-favorite-serverapplications/" target="_blank">here</a>]</em></p>

@@ -1,0 +1,59 @@
+---
+layout: post
+title: ! 'Glance: Better word lookup'
+date: 2010-12-24 07:54:14.000000000 +05:30
+categories:
+- random
+- tech
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>Glance is an offline dictionary lookup utility written with the intent to make looking up words quick, and as intuitive as possible to your work on the computer or internet.</p>
+<p><strong>Why</strong></p>
+<p>When on Windows, I was a big fan of WordWeb, which is a nifty dictionary utility, that sat in the taskbar, and made it simple to lookup words by selecting, and hitting a keyboard shortcut. The closest equivalent on Ubuntu is <em>gnome-dictionary</em>, but it lacks the ability to lookup selected words. By default it is configured to look things up online, so you were out of a dictionary when not connected. You also can't make anything beyond simple exact-match calls (until you figure out what the heck <em>strategies</em> are, and how to use them).</p>
+<p>So I wrote <em>glance</em> to fill my specific needs. They weren't many.</p>
+<ul>
+<li>Lookup a word by simply selecting it in browser/text-editor/ebook reader and hitting a key (like F7.. who uses that anyway?)</li>
+<li>Search for prefix/suffixed words with *. Ex: *arch, matri*, *morph*.</li>
+<li>Provide definition of the word, etymology (along with meaning of the root words), Similar words, usage, etc (These depend on the dictionaries installed)</li>
+</ul>
+<p><strong>Setup</strong></p>
+<p>These instructions are for Ubuntu (and should work on Debian). Install equivalent packages on other distributions.</p>
+<p>First install dependencies, and local dictionary via</p>
+<blockquote><p>apt-get install python-gtk2 xsel<br />
+apt-get install dictd dict dict-wn dict-gcide</p></blockquote>
+<p>This installs the Wordnet and the Comprehensive English dictionary. You can also install:</p>
+<blockquote><p>dict-moby-thesaurus - Largest and most comprehensive thesaurus<br />
+dict-jargon - Jargon definitions<br />
+dict-foldoc - FOLDOC dictionary database<br />
+dict-vera - Dictionary of computer related acronyms<br />
+dict-bouvier - John Bouvier's Law Dictionary for the USA<br />
+dict-devil - A satirical, cynical and irreverent dictionary of common words<br />
+dict-gazetteer - Place names, population and location provided by the U.S. Census Bureau</p></blockquote>
+<p>There are multiple language A to B dictionaries available as well. To see all available dictionaries, run:</p>
+<blockquote><p>apt-cache search dict | grep ^dict</p></blockquote>
+<p><em>glance</em> is a single file utility. Copy the file to /usr/local/bin</p>
+<blockquote><p>sudo cp glance /usr/local/bin</p></blockquote>
+<p>Setup keyboard shortcut F7 (or other), Add a custom shortcut for glance. Do this by running <em>gnome-keyboard-properties</em>.</p>
+<p>All done. Select a word and press F7 anytime to view in all it's defined glory.</p>
+<p><strong>Where</strong></p>
+<p>You can grab the utility from <a href="https://bitbucket.org/anilg/misc/src">https://bitbucket.org/anilg/misc/src</a>. Click on glance, and grab the raw file.</p>
+<p><strong>Screenshot</strong></p>
+<p>And we end with an obligatory screenshot.</p>
+<p>[caption id="" align="alignnone" width="615" caption="Glance Screenshot"]<img title="Glance" src="assets/screenshotojm.png" alt="Glance" width="615" height="547" />[/caption]</p>
+<p>Simple, no-frills look. Just the way I like it. Hope others out there like it too.</p>
+<p><em>[Update]</em></p>
+<p>So looks like google-fu failed me initially, and I missed out on multiple good dictionary lookup choices, that did many of the things I was looking for. Special mentions goto Artha, Stardict and qstardict. There's things to like about all of these, but my favorite is still Glance (biased much, eh?).</p>
+<p>Having used Glance incessantly over the past week, I simply love the no frills look of it. It pops up, and there isnt much to do apart from scrolling up or down. No tabs separating definition, similar words, etc, no menu items. All information is presented upfront.</p>
+<p>Also I like to to be dependent on system packages (rather than extracting pre-archived packages ala Stardict, though this makes it hard to port). Glance being tiny does help too.</p>
+<p>A couple of updates that I'd like to implement would be syntax highlighting the definition to make it easier on the eyes (patches welcome). Glance will never have any cluster of tabs or menu items or screens. All the information will be presented in the one scrollable page. Another quick feature would be to automatically add a shortcut, and install itself into /usr/local/bin, with a confirmation from the user. Just need to figure out pygtk interface to desktop shortcuts.</p>

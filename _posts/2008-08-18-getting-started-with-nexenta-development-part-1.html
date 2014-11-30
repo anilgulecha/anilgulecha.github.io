@@ -1,0 +1,67 @@
+---
+layout: post
+title: Getting started with Nexenta Development - Part 1
+date: 2008-08-18 14:25:31.000000000 +05:30
+categories:
+- Nexenta
+- Opensolaris
+- tech
+- ubuntu
+tags:
+- debian
+- Nexenta
+- Opensolaris
+- ubuntu
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>So I've been working on Nexenta for a fortnight now, and have picked up a lot of things. Below is a short introduction/guide on how you can join the project.</p>
+<p><strong>Introduction</strong></p>
+<p>First a little bit of background. The debian project was started in the early nineties to be a one-stop package repository for Linux applications. It has been a fairly popular distribution. However, it was the Ubuntu distribution that made the most use of these packages. Ubuntu is a debian derivative, with focus on the desktop. It makes use of the debian's packages, on top of the linux kernel.</p>
+<p>The solaris kernel is very well regarded for its rock solid stability. When solaris was open sourced as opensolaris in 2005, many possibilities emerged.. what if we could combine Solaris's famed stability with Ubuntu's famed user experience. And this is the aim of the Nexenta project.</p>
+<p>So that is the backstory. Nexenta = Ubuntu - Linux kernel + Solaris kernel. Nexenta is currently focusing on the Nexenta Core Platform, which is a starting point for any type of focussed distribution; ncp will allow for easy addition of packages, and you are free to develop any distribution on top of it, by adding any packages you want. Which brings us to how you contribute to the Nexenta project: Packages.</p>
+<p>Ubuntu/Debian currently have 20000 packages. We need help from the community to port these to Nexenta. A sizable portion has already been done. And a sizable portion remains.</p>
+<p><strong>Getting Started</strong></p>
+<p>To get started.. these are the documentation a newbie would have to to pursue:</p>
+<p>Nexenta uses the Debian/Ubuntu packaging model. This is thoroughly explained in</p>
+<ul>
+<li><a href="http://www.debian.org/doc/devel-manuals#policy">Debian policy manual</a></li>
+<li><a href="http://www.debian.org/doc/manuals/maint-guide/index.en.html">Debian Maintainers/developers guide</a></li>
+<li><a href="http://www.debian.org/doc/manuals/developers-reference/index.en.html">Debian developers reference</a></li>
+<li><a href="http://www.debian.org/doc/manuals/apt-howto/index.en.html">Apt packaging system</a></li>
+</ul>
+<p>A majority of the open source applications use the GNU autotools to compile and build programs. This <a href="http://www.lrde.epita.fr/~adl/autotools.html">autotools tutorial</a> should help you get started.</p>
+<p><strong>Platform</strong></p>
+<p><em>Locally</em>: As NCP is a command-line only environment, the ideal setup for developing would be running NCP VMWare server on Ubuntu Hardy 8.04. NCP 2.0, the upcoming release is based off this Ubuntu release. You can however install this on baremetal or on Windows/ OpenSolaris.</p>
+<p><em>Remotely</em>: Another option is to use the build machines at gnusolaris.org remotely. get onto IRC, and request for a login details. We'll setup a development zone, and give you the login details. Further details on the <a href="http://www.nexenta.org/os/Hackathon">hackathon</a> page in the "How to get started" section</p>
+<p><strong>Machine requirements</strong></p>
+<ul>
+<li>If you are going to work remotely on the gnusolaris.org development machine, all you need is an ssh client like putty on Windows or your garden variety ssh on your favourite *nix distro.</li>
+<li>If working on NCP locally, the recommended specs are:
+<ul>
+<li>Processor: Pentium 4 2.0 Ghz or equivalent</li>
+<li>Memory: 1Gb minimum, 2Gb recommended.. you'll be using a VM.</li>
+<li>Space :10Gb for the virtual hard disk.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Installing Nexenta Core Platform</strong></p>
+<p>A step by step guide with screenshots is available at <a href="http://www.nexenta.org/os/Getting_Started">http://www.nexenta.org/os/Getting_Started</a></p>
+<p>If you run into issues setting up VMware with bridged networking, you can take a look at my <a title="Setting up bridged networking on vmware for ncp2" href="http://www.gulecha.org/2008/08/12/setting-up-bridged-networkign-on-vmware-for-ncp2/">previous entry</a>.</p>
+<p><strong>Getting help</strong></p>
+<p>The nexenta project has a very helpful community, that answers your queries quickly.</p>
+<ul>
+<li>Drop in on IRC at #nexenta on freenode, or use the web-based interface at <a href="http://nexenta.org/chat">nexenta.org/chat</a>.</li>
+<li>Signup for the developer <a href="http://www.nexenta.org/os/Community#head-f7621fbc909592eae2972925bf0bc00b6cbcf822">mailing lists</a></li>
+<li>Web-based <a href="http://www.nexenta.com/forum">forum</a></li>
+</ul>
+<p>[The next part will take a look at the important commands used in porting packages]</p>

@@ -1,0 +1,37 @@
+---
+layout: post
+title: sshlist - an appindicator/unity replacement for sshmenu
+date: 2011-05-19 13:37:47.000000000 +05:30
+categories:
+- tech
+- ubuntu
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _wp_old_slug: ''
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>[caption id="" align="alignright" width="399" caption="sshlist in action"]<img title="sshlist" src="assets/Screenshot.png" alt="sshlist in action" width="399" height="225" />[/caption]</p>
+<p><em><strong></strong>[<strong>Note</strong>: SSHlist has been deprecated,in favor of <a href="http://www.gulecha.org/2011/07/29/sshplus-a-sshmenu-compatible-appindicator/">SSHplus</a>. SSHlist will no longer be developed, but is still made available]</em></p>
+<p>Since moving to Ubuntu Natty, I've missed the <a href="http://sshmenu.sourceforge.net/">sshmenu applet</a> a lot.</p>
+<p>So I spent an hour to writeup a functionally equivalent appindicator menu. And so <strong>sshlist</strong> was born.</p>
+<p>Using sshlist is simple. From the instructions:</p>
+<ul>
+<li>Copy file sshlist.py (this file) to /usr/local/bin</li>
+<li>Edit file .sshlist in home directory to add ssh host (one per line)</li>
+<li>You can if you wish add additional ssh options. The line is appended to the ssh command</li>
+<li>Launch sshlist.py</li>
+<li>Or better yet, add it to gnome startup programs list so it's run on login.</li>
+</ul>
+<p>Of course, much of that could be automated, patched and/or packaged. For now simply head to the <a href="https://bitbucket.org/anilg/misc/src">repository</a>, click on "sshlist.py" and grab the raw file, and follow the above instructions.</p>
+<p>Patches welcome.</p>
+<p><em><strong>Update</strong>: Benjamin Heil extended sshlish for <a href="http://www.bheil.net/blog/2011/07/07/simplestarter-simple-application-starter-appindicator">simplestarter</a>, which allows launch of multiple applications with various arguments. It might suit your needs.</em></p>
+<p><em><strong>Update 2</strong>: SSHplus is better! This version will no longer be maintained.</em></p>

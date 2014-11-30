@@ -1,0 +1,40 @@
+---
+layout: post
+title: Setting up NexentaStor SDK on Ubuntu
+date: 2010-10-07 12:34:55.000000000 +05:30
+categories:
+- Nexenta
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _wp_old_slug: ''
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p><strong>Setting up</strong></p>
+<p>You'll first need to install xml headers (required to build dbus), and a perl package (used in the example scripts). Do this by</p>
+<blockquote><p>apt-get install libxml2-dev libcarp-assert-perl</p></blockquote>
+<p>Next, grab the SDK tarball from <a href="http://www.nexenta.com/corp/content/view/146/124/">here</a>.</p>
+<p>Extract the tarball, cd into the directory, and build the required libraries</p>
+<blockquote><p>$ cd NexentaStor-SDK-Linux/<br />
+$ ./build_libs.sh</p></blockquote>
+<p><strong>First Run</strong></p>
+<p>To run the example, you'll first need to allow the box with the SDK (say 192.168.1.10) access to the NexentaStor instance (at say 192.168.1.5). On the NexentaStor box, as root, do.</p>
+<blockquote><p>nmc@nza304:/$ setup appliance authentication<br />
+Option ?  iptable<br />
+Option ?  add<br />
+Option ?  allow<br />
+Mask or IPv4 address : 192.168.1.10<br />
+MODE       MASK/IP<br />
+allow      192.168.1.10</p></blockquote>
+<p>That's it! Now back on the SDK box, run the test with:</p>
+<blockquote><p>$ cd examples/perl/<br />
+$ ./test.pl 192.168.1.5</p></blockquote>
+<p>More articles on NexentaStor SDK and documentation to come soon.</p>

@@ -1,0 +1,36 @@
+---
+layout: post
+title: Nexenta supports debtorrent
+date: 2009-01-30 16:09:02.000000000 +05:30
+categories:
+- Nexenta
+- Opensolaris
+tags:
+- Nexenta
+- torrent
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>[caption id="" align="aligncenter" width="400" caption="Debtorrent on Nexenta"]<a href="http://www.nexenta.org/os/debtorrent"><img title="Debtorrent" src="assets/debtorrentwu8.png" alt="Debtorrent on Nexenta" width="400" height="60" /></a>[/caption]</p>
+<p>Find your packages downloading slow on Nexenta? <em>Debtorrent</em> is a technology that brings bittorrent to apt packaging system. We've added support for debtorrent on nexenta.org, so you can now seed packages you download for others.. this makes download faster for users living near you.</p>
+<p><strong>Setting up</strong></p>
+<p>To setup debtorrent, simply run</p>
+<blockquote><p>apt-get install debtorrent</p></blockquote>
+<p>Now tha you have debtorrent running (by default on port 9988, add the following lines to /etc/apt/sources.lst</p>
+<blockquote><p>deb debtorrent://localhost:9988/apt.nexenta.org hardy-unstable main contrib non-free<br />
+deb-src debtorrent://localhost:9988/apt.nexenta.org hardy-unstable main contrib non-free</p></blockquote>
+<p>Debtorrent is intelligent enough to fallback to normal http mode if debtorrent doesnt work (or there is no one seeding the required package)</p>
+<p><strong>Advanced configuration</strong></p>
+<p>Debtorrent works great in a LAN environment. So one PC would use the above configuration, and the rest would connect to this single one.</p>
+<p><strong>Instructions</strong></p>
+<p>Full instructions for setting up can be found on our <a href="http://www.nexenta.org/os/debtorrent" target="_blank"><strong>debtorrent</strong></a> page.</p>
+<p>To learn more about debtorrent, visit its <a href="http://debtorrent.alioth.debian.org/" target="_blank">homepage</a>.</p>

@@ -1,0 +1,65 @@
+---
+layout: post
+title: Nexenta iSCSI with COMSTAR/ZFS integration
+date: 2009-03-03 07:45:50.000000000 +05:30
+categories:
+- Nexenta
+- Opensolaris
+tags:
+- comstar
+- iscsi
+- Nexenta
+- Opensolaris
+- scsi
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p><em>[I've made a few small updates correcting typos and inserted additional information to turn off any existing shareiscsi=on zfs volumes]</em></p>
+<p>Opensolaris has had the capability to share an iscsi target for sometime. This was done in the userland via the  iscsi target daemon.</p>
+<p>The COMSTAR project on opensolaris was started to build a fast scsi target on the platform. From the <a href="http://www.opensolaris.org/os/project/comstar/" target="_blank">project page</a>:</p>
+<blockquote><p>COMSTAR is a software framework that enables you to turn any OpenSolaris host into a SCSI target that can be accessed over the network by initiator hosts. COMSTAR breaks down the huge task of handling a SCSI target subsystem into independent functional modules. These modules are then glued together by the SCSI Target Mode Framework (STMF).</p></blockquote>
+<p>COMSTAR provides</p>
+<ul>
+<li>Extensive LUN Masking and mapping functions</li>
+<li>Multipathing across different transport protocols</li>
+<li>Multiple parallel transfers per SCSI command</li>
+<li>Scalable design</li>
+<li>Compatible with generic HBAs</li>
+</ul>
+<p>With intergration of COMSTAR to ZFS, Nexenta Core Platform provides for very easy setup as an iSCSI target. These latest changes to ZFS are available both in the latest <a href="http://www.nexenta.org/os/Download">beta2 release</a> of NCP, as well as the commercial <a href="http://www.nexenta.com">NexentaStor v1.1.5</a>.</p>
+<p><strong>How to setup a NCP2 box as an iSCSI target</strong></p>
+<p>First, shutdown older iSCSI target service, and start the new one</p>
+<blockquote><p>svcadm disable -s iscsitgt<br />
+svccfg delete -f iscsitgt</p></blockquote>
+<p>Also if you have any zfs volumes with shareiscsi=on, set them to shareiscsi=off. This is required to setup the new zfs integrated scsi correctly.</p>
+<p>Enable iscsi/target and it's dependency</p>
+<blockquote><p>svcadm enable -s stmf<br />
+svcadm enable -s iscsi/target</p></blockquote>
+<p>Install the switch by creating the file:</p>
+<blockquote><p>touch /etc/shareiscsi.conf</p></blockquote>
+<p>Now create a dataset (volume) which is to be shared via iSCSI</p>
+<blockquote><p>zfs create -V 500m tank/zvol1</p></blockquote>
+<p>Using -V creates a volume type dataset, and it reserves the given amount of space on the pool for it's data. In our case we reserved 500 Mb of space for our volume zol1. To create an SCSI target using this, simply run.</p>
+<blockquote><p>zfs set shareiscsi=on tank/zvol1</p></blockquote>
+<p>And we're now set :). To confirm that the target has been configured, check that output of</p>
+<blockquote><p>itadm list-target -v</p></blockquote>
+<p><strong>Performance gain</strong></p>
+<p>This implementation of an iSCSI target provides 2-3 times the performance of the older userland implementation in opensolaris. The numbers stack up as follows:</p>
+<blockquote><p>Parameters:  4 workers x 8 outstanding IOs</p>
+<p><span style="text-decoration: underline;"><strong>COMSTAR iSCSI target</strong></span></p>
+<p><strong>50000</strong> IOPS, 512B, 97% CPU, <strong>24</strong>MB/sec  &lt;- Reads<br />
+<strong>40000</strong> IOPS, 512B, 92% CPU, <strong>17</strong>MB/sec  &lt;-Writes</p>
+<p><span style="text-decoration: underline;"><strong>OLD UserLand iSCSI target</strong></span></p>
+<p><strong>17000</strong> IOPS, 512B, 98% CPU, <strong>8</strong>MB/sec  &lt;- Reads<br />
+<strong>15000</strong> IOPS, 512B, 98% CPU, <strong>7.5</strong>MB/sec  &lt;-Writes</p></blockquote>
+<p>The tests were conducted with IOMeter, using a 100M zvol with zil disabled. Also these were done over a 1G network between the target and the initiator.</p>
+<p>More information on COMSTAR can be found on it's <a href="http://www.opensolaris.org/os/project/comstar/" target="_blank">project page</a>, and the changes can be found in the <a href="http://builder.tajinc.org/?f=source_status&amp;view_method=source&amp;source_name=nexenta-on" target="_blank">nexenta-on</a> package in NCP2.</p>

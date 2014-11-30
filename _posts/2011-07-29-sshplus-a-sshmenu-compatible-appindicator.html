@@ -1,0 +1,62 @@
+---
+layout: post
+title: ! 'SSHplus: Even better sshmenu compatible appindicator'
+date: 2011-07-29 04:18:29.000000000 +05:30
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>[caption id="" align="alignright" width="276" caption="SSHplus Appindicator"]<img class=" " title="SSHplus Appindicator" src="assets/T7VvF.png" alt="SSHplus Appindicator" width="276" height="334" />[/caption]</p>
+<p>My previous little utility - <em>sshlist</em> - got quite some attention, and helped out a lot of folks who were missing sshmenu on Unity. You can read more about the intentions behind this utility <a href="http://www.gulecha.org/2011/05/19/sshlist-an-appindicatorunity-replacement-for-sshmenu/" target="_blank">in this entry</a>. Benjamin Heil further <a href="http://www.bheil.net/blog/2011/07/07/simplestarter-simple-application-starter-appindicator" target="_blank">modified it</a> giving it a simple parsable configuration format, and supporting launching applications.</p>
+<p><strong><em>SSHplus</em></strong> builds on both of the above, adding one the most requested features : supporting sshmenu configuration. SSHplus adds simple identification of sshmenu configuration - it grabs the title, and ssh parameters and sets them up in the menu (as shown in screenshot). It does not yet recognize  other items like profile etc. If you need an entry with very specific formatting, you can simply add the right arguments in sshplus configuration.</p>
+<p><strong>Features</strong></p>
+<ul>
+<li>Launch SSH, rdesktop, etc.</li>
+<li>Compatible with sshmenu configuration file</li>
+<li>Launch any application - for ex. VLC hangs a lot on me, and I need a simple way to kill it (screenshot)</li>
+<li>Supports nested folders (but not yet for sshmenu nested entries - coming soon)</li>
+</ul>
+<p><strong>Setting up SSHplus</strong></p>
+<ul>
+<li>Download the latest sshplus.py  <a href="https://github.com/anilgulecha/misc/raw/master/sshplus.py">file</a> from the github repo.</li>
+<li>Copy file  to /usr/local/bin</li>
+<li>Edit file .sshplus in home directory using simple configuration (explained below).</li>
+<li>Launch sshlist.py</li>
+<li>Or better yet, add it to gnome startup programs list so it’s run on login.</li>
+</ul>
+<p><strong>Example Configuration  ~/.sshplus</strong></p>
+<blockquote><p># Application launchers in a folder<br />
+folder:Applications<br />
+Show top|gnome-terminal|-x top<br />
+Kill VLC|pkill| -9 vlc</p>
+<p>#back to main folder<br />
+folder:<br />
+#sep adds a separator<br />
+sep</p>
+<p># label: adds labels to the menu<br />
+label:SSH connections</p>
+<p>SSH server1|gnome-terminal|-x ssh root@google.com<br />
+SSH server2|gnome-terminal|-x ssh -p 456 server2<br />
+Find the source|gnome-terminal|-x ssh neo@theone.com</p>
+<p>sep</p>
+<p># Use rdesktop to connect to Windows Servers<br />
+label:RDesktop connections<br />
+Win-Server 1|rdesktop|-T "Win-Server 1" 1.2.3.4<br />
+Win-Server 3 (with many arguments)|rdesktop|-g 1320x680 -T "Win-Server 3" -x l -P -r sound:local 1.2.3.6</p>
+<p>sep<br />
+label:Putty Connections</p>
+<p># PuTTY<br />
+PuTTY-Session 1|putty|-load SavedSession1<br />
+PuTTY-Session 2|putty|-load SavedSession2</p>
+<p>#If present SSHmenu connections will be automatically added</p></blockquote>
+<p>Thanks to the users and commenters on sshlist who provided feedback, and to Benjamin Heil and Fabio for their modifications. Feel free to <a href="https://github.com/anilgulecha/misc/">fork the project</a> on github.</p>

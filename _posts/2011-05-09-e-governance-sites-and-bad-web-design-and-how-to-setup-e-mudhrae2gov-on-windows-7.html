@@ -1,0 +1,37 @@
+---
+layout: post
+title: E-governance sites and bad web design, and how-to setup E-Mudhra/e2gov on windows
+  7
+date: 2011-05-09 02:29:00.000000000 +05:30
+categories:
+- random
+- tech
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _wp_old_slug: ''
+author:
+  login: admin
+  email: anil.verve@gmail.com
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>So local Indian laws requires tenders to be filed online. This required buying a 3000Rs (!!), about 60$ USB dongle that has a "Class 3 Platinum" certificate signed by the CA E-Mudhra. There's zero documentation online on setting it up, and sites that process tenders work on "IE6 or IE7 only". They do not work with Windows 7/IE8 by default. Below are the steps on how-to get things working on Windows 7, followed by a rant.</p>
+<p><strong>Setting up E-Mudhra on Windows 7/ IE 8</strong></p>
+<ul>
+<li>Pop in the CD that came with the dongle and install the driver. Skip the other reader and download manager crapware.</li>
+<li>Once installed (and rebooted if you wish), plug in the USB. Windows will ask you if you want to add the root CA E-Mudhra. Answer yes.</li>
+<li>Now to setup IE8 to behave well with the tender sites. Note this will render IE8 highly insecure. Once you make the below changes, use IE8 only for tenders. For all other internet activities use Google Chrome or Mozilla Firefox.</li>
+<li>The tender sites require full ActiveX control to work correctly. Do the below to setup IE8 to behave like earlier versions.</li>
+<li>Goto Internet options in IE8, and set compatibility mode to on. Next click under security, and choose the lowest level (which is Medium). Click on "Advanced", and enable all the disabled ActiveX features. You will note that these new options are labelled "Insecure" and will turn red when you choose them.</li>
+<li>Save, Reboot. You will have done all the things correctly if you are not presented with any "ActiveX popup warnings" when browsing a site, i.e, all ActiveX requires are accepted by default.</li>
+</ul>
+<p>Rant</p>
+<p>Why the hell do the Indian government website designers choose the most lax practices of the lot. They need to be strung up and given a lesson on webdesign after the year 2003. Jesus fusking christ.</p>
+<p>And what's behind the REQUIREMENT to use e2gov.in for digital certificates. There's free ones, or others with a nominal fee available. One which don't bloddy require you to add a FRIGGING ROOT CERTIFICATE to your machine.</p>
+<p>And activeX?!!!@!!!!!! Microsoft has basically disavowed it. And I counted 2-3 different controls that are loaded. May I introduce you to much more modern alternatives, like perhaps a reasonable java applet, or even better, a native app? Or just don't require a login process that requires a friggin digital certificate. There's simpler way of digital identity that what's currently setup. Like squishing out the fluid from my eyeballs and mailing it out to you.</p>
+<p>FUCK!</p>
