@@ -1,0 +1,168 @@
+{
+  "basics": {
+    "name": "Anil Gulecha",
+    "label": "Software Engineer",
+    "picture": "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/3/000/230/35a/2812061.jpg",
+    "email": "anil.verve@gmail.com",
+    "phone": "+91-9480240751",
+    "website": "http://www.gulecha.org",
+    "summary": "Passionate about startups, internet and media -- and areas where these intersect. I will fit best in small teams, companies that are fast-paced, build products and components as micro-services, and tend to use open source technologies.",
+    "location": {
+      "address": "Jayanagar",
+      "postalCode": "560011",
+      "city": "Bangalore",
+      "countryCode": "IN",
+      "region": "Karnataka"
+    },
+    "profiles": [
+      {
+        "network": "Web",
+        "username": "http://www.gulecha.org",
+        "url": "http://www.gulecha.org"
+      },
+      {
+        "network": "Twitter",
+        "username": "anilgulecha",
+        "url": "https://twitter.com/anilgulecha"
+      },
+      {
+        "network": "IMDB",
+        "username": "anilg",
+        "url": "http://www.imdb.com/name/nm4890577/ "
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "HackerRank",
+      "position": "Technical Lead",
+      "website": "https://www.hackerrank.com",
+      "startDate": "2013",
+      "endDate": "",
+      "summary": "Joined the startup early, and implement multiple projects. Ownership all across the product-line. I have a hand in all parts of the project given the speed with which we built multiple products as we expanded.",
+      "highlights": [
+        "Write and maintain the enterprise-app of the company, including having initially ported it to RoR",
+        "Write and maintain the candidate side app, used thousands of times a day.",
+        "Built SudoRank, a framework to vet for DevOps roles."
+      ]
+    },
+    {
+      "company": "Trelby",
+      "position": "Co-author",
+      "website": "http://www.trelby.org",
+      "startDate": "2011",
+      "endDate": "",
+      "summary": "Noting a lack of good open source screenwriting options, I rebooted the Blyte screenwriter with it's original author, and renamed it Trelby. I implemented major UI modifications, import/export of the industry standard FDX format and HTML, binary installers for Windows/Ubuntu, undo/redo logic for the custom Text control, scene navigator, PDF watermarking, smooth scrolling, and multiple bugfixes. Currently also working on building a user and developer community around the project and taking on the incumbents.",
+      "highlights": []
+    },
+    {
+      "company": "Nexenta",
+      "position": "Software Engineer",
+      "website": "https://www.nexenta.com",
+      "startDate": "2008",
+      "endDate": "2013",
+      "summary": "Joined the startup early, among the first few employees, allowing me to implement multiple projects across the organization.",
+      "highlights": [
+        "The lead of the Nexenta Core Platform, the open source storage centric distribution by Nexenta. Oversaw development of OS, online community outreach.",
+        "Prototyping: Developed applications, tools and technologies from ground up for internal research and development.",
+        "Global Outreach: Spoke and represented the project at multiple conferences spanning DebConf (New York), OpenSolaris conferences (Mountainvew, Germany, France), and Foss.in (India).",
+        "Operations: Oversaw the Indian storage business. Worked on scouting new VARs, partners, and clients.",
+        "Web and IT: Maintained all web properties for the initial years including, corporate website, partner outreach and CRM. Implemented licensing technology and management for commercial product. (Joomla/Wordpress/elgg/php/python)."
+      ]
+    },
+    {
+      "company": "Sun Microsystems/OpenSolaris/Beleix",
+      "position": "Software Engineer",
+      "website": "https://www.sun.com",
+      "startDate": "2007",
+      "endDate": "2009",
+      "summary": "Served as the technical lead for Sun's Campus Ambassador program, and lead students worldwide. Also made significant contributions to the open solaris and Belenix projects",
+      "highlights": [
+        "Ported Belenix operating system to boot via USB. Received international coverage for this work.",
+        "Served as the technical lead of the campus ambassador program for Sun Microsystems. Trained and evangelized open source technologies in OpenSolaris, including ZFS, Dtrace",
+        "Robotics: built a prototype wireless robotic car, using the embedded SunSpots platform."
+      ]
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Yukti/Nirmukta",
+      "position": "Organizer",
+      "website": "",
+      "startDate": "2011",
+      "endDate": "2013",
+      "summary": "I was an organizer for Nirmukta, an organization with a focus on spreading rationality and critical thinking. We conducted workshops to figure out plans to root out super-station from civil society. Invited global personalities like Narendra Nayek and Babu Gogineni to participate and speak at the envent.",
+      "highlights": []
+    }
+  ],
+  "education": [
+    {
+      "institution": "VTU",
+      "area": "Computer Science",
+      "studyType": "Bachelor",
+      "startDate": "2004",
+      "endDate": "2008",
+      "gpa": "",
+      "courses": []
+    }
+  ],
+  "awards": [],
+  "publications": [],
+  "skills": [
+    {
+      "name": "Web Development",
+      "level": "Master",
+      "keywords": [
+        "HTML",
+        "CSS",
+        "Javascript",
+        "Coffeescript",
+        "Git",
+        "CI"
+      ]
+    },
+    {
+      "name": "Frameworks",
+      "level": "Master",
+      "keywords": [
+        "Ruby on Rails",
+        "NodeJS",
+        "Backbone",
+        "WxWidgets"
+      ]
+    },
+    {
+      "name": "Operations",
+      "level": "Master",
+      "keywords": [
+        "Linux",
+        "AWS"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "Hindi",
+      "fluency": "Very Good"
+    },
+    {
+      "language": "Kannada",
+      "fluency": "Good"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Filmmaking",
+      "keywords": []
+    },
+    {
+      "name": "Photography",
+      "keywords": []
+    }
+  ],
+  "references": []
+}
