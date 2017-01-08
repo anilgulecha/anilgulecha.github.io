@@ -1,0 +1,356 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+<script src="jquery.min.js"></script>
+<script src="jquery-google-sheet-to-json.min.js"></script>
+<script src="jstorage.min.js"></script>
+<script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
+<style type="text/css">
+
+  body,dd,dt,ol ol,ol ul,ul ol,ul ul{margin:0}html{box-sizing:border-box;font-size:10px;-webkit-tap-highlight-color:rgba(0,0,0,.1);-webkit-text-size-adjust:100%;-moz-text-size-adjust:100%;-ms-text-size-adjust:100%;text-size-adjust:100%}*,::after,::before{box-sizing:inherit}body{background-color:#f3f3f3;color:#333;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Hiragino Sans GB","Microsoft Yahei","微软雅黑",Arial,Helvetica,STHeiti,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:1.8rem;line-height:1.5}code,kbd,pre,samp{background-color:rgba(0,0,0,.05);font-family:Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}h1,h2,h3,h4,h5,h6{margin:32px 0 0;font-weight:600}address,blockquote,dl,figure,hr,ol,p,pre,table,ul{margin:14px 0 0}h1{font-size:3.2rem}h2{font-size:2.6rem}h3{font-size:2.4rem}h4{font-size:2.2rem}h5{font-size:2rem}h6{font-size:1.8rem}a{color:#0080ff;text-decoration:none;-webkit-text-decoration-skip:objects}a:active,a:hover{text-decoration:underline}b,dt,strong{font-weight:600}code,kbd,samp{font-size:85%;padding:.1em .2em}pre,pre code{font-size:1.5rem}pre{max-height:300px;overflow:auto;-webkit-overflow-scrolling:touch;line-height:1.2;margin-left:-14px;margin-right:-14px;padding:14px}pre code{background-color:transparent;padding:0}@media (min-width:740px){pre{margin-left:0;margin-right:0}}blockquote{border-left:5px solid #ddd;color:#777;padding-left:14px}ol,ul{padding-left:28px}hr{border:0;border-top:1px solid #ddd}img{max-width:100%;vertical-align:middle}[role=button]{cursor:pointer}[role=button],a,area,button,input,label,select,summary,textarea{outline:0;-ms-touch-action:manipulation;touch-action:manipulation}button,input,select,textarea{font:inherit}::-webkit-file-upload-button,[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button;appearance:button}[hidden]{display:none}.container{background-color:#fff;max-width:740px;min-width:320px;outline:#fff solid 14px;overflow:hidden;padding:0 14px 14px;width:100%}@media (min-width:1041px){.container{max-width:768px;outline:0;padding:0 28px 14px}}
+
+  .spinner {
+  width: 40px;
+  height: 40px;
+  margin: 100px auto;
+  background-color: #333;
+
+  border-radius: 100%;  
+  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+  animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-scaleout {
+  0% { -webkit-transform: scale(0) }
+  100% {
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-scaleout {
+  0% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 100% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}
+</style>
+<title>Automated sms campaign from your phone number using google sheets as contact list.</title>
+<body>
+<div class="container">
+ <h1><img src="icon.svg" width=80 />SMS sender</h1>
+ <p>Create and send out sms campaigns using <b>your phone number</b> in 3 easy steps.</p>
+ <h2 class="import"> 1. Import </h2>
+  <p>Create your contact list on google sheets, and use it by clicking the button below.</p>
+  <p><button class="loadbtn">List google sheets</button></p>
+  <pre class="sheetlisting"></pre>
+  <p class="importstatus" style="color:green"></p>
+ <hr>
+ <h2 class="create"> 2. Create campaign </h2>
+ <div class="campaign" style="display: none">
+     <p>Enter your campaign message here. use <i>{{name}}</i> for where you want the name to appear</p>
+     <textarea class="campaignmessage" rows=5>Hi {{name}}, we'd like to wish you a happy new year!</textarea><br><i class="count"></i>
+     <p>Delay between messages<br><input name="delay" type="text" value="10" /> sec</p>
+     <p><button class="campaignbtn">Create campaign</button></p>
+ </div>
+ <hr>
+ <h2 class="send"> 3. Install app and Send sms </h2>
+ <p>Please make sure you have the <a href="https://play.google.com/store/apps/details?id=com.bogdan.sms" target="_blank">app</a> installed and running, before you click on start. </p>
+ <a href="https://play.google.com/store/apps/details?id=com.bogdan.sms" target="_blank"><img src="play.png" width="200"/></a><br>
+ <img src="sms.png" width="250"/>
+ <div class="campaignlist" style="display:none">
+ </div>
+ <hr>
+</div>
+</body>
+<script>
+var CLIENT_ID = '564386713467-pn4kk6u6e3pdbiq09h7c1tka6u2v24it.apps.googleusercontent.com';
+var SCOPES = ['https://www.googleapis.com/auth/drive.readonly'];
+
+function googleLogin() {
+  gapi.auth.authorize({
+    'client_id': CLIENT_ID,
+    'scope': SCOPES.join(' '),
+    'immediate': false
+  }, function(authResult) {
+    if (authResult && !authResult.error) {
+      // Hide auth UI, then load client library.
+      gapi.client.load('drive', 'v3', listFiles);
+    } else {
+      alert("Could not login. Try again, or contact anil.verve@gmail.com if there's an issue");
+    }
+  });
+}
+
+function listFiles() {
+  var request = gapi.client.drive.files.list({
+      'pageSize': 100,
+      'q': "mimeType='application/vnd.google-apps.spreadsheet'",
+      'fields': "nextPageToken, files(id, name)"
+    });
+
+    request.execute(function(resp) {
+      var files = resp.files;
+      if (files && files.length > 0) {
+        for (var i = 0; i < files.length; i++) {
+          var file = files[i];
+          $(".sheetlisting").append(`<button class='loadsheet' data-id='${file.id}' data-name='${btoa(file.name)}'>Load</button> ${file.name}\n`)
+        }
+        $(".loadsheet").on("click", loadContacts);
+      } else {
+        $(".sheetlisting").html('No files found in your google drive. Please create a sheet with 2 columns: name and phone, and then try again');
+      }
+    });
+}
+
+function loadContacts(e) {
+  el = $(e.currentTarget);
+  id = el.attr("data-id");
+  name = el.attr("data-name");
+  req = gapi.client.drive.files.export({
+    fileId: id,
+    mimeType: "text/csv"
+  }).then(function(r){
+    console.log(r.body);
+    contacts = r.body.split("\n");
+    if (contacts[0].toLowerCase().trim() !== "name,phone") {
+      console.log(`>${contacts[0].toLowerCase().split("")}< >${'name,phone'.split("")}<`)
+      alert("This is not a valid format. Please create a sheet with 2 columns, and the first row should be the items phone and name");
+      return;
+    }
+    $(".sheetlisting").empty();
+    list = []
+    for (i = 1;i < contacts.length; i++) {
+      list.push({name: contacts[i].split(",")[0], phone: contacts[i].split(",")[1]});
+    }
+    $.jStorage.set("contactlist", list);
+    $.jStorage.set("sheetid", id);
+    $.jStorage.set("sheetname", name);
+    init0();
+  })
+}
+
+function init0() {
+    contactlist = $.jStorage.get("contactlist");
+    if (contactlist) {
+        $(".importstatus").html(`<b>${contactlist.length}</b> contacts imported from sheet <code><b>${atob($.jStorage.get('sheetname'))}</b></code>`)
+        $(".import").append("<span style='color:green;'>&#10004;</span>")
+        $("input[name=gsheetsid]").val($.jStorage.get('sheetid'))
+        init1();
+    } else {
+        $(".importstatus").html("No contacts imported.")
+    }
+    if ($.jStorage.get("message")){
+      $(".campaignmessage").val($.jStorage.get("message"));
+    }
+}
+
+function init1() {
+    $(".campaign").show();
+    cs = $.jStorage.get("campaigns");
+    if(cs) {
+        $(".create").append("<span style='color:green;'>&#10004;</span>");
+        init2(cs);
+    }
+}
+
+function init2(cs){
+    console.log("init2");
+    $(".campaignlist").empty();
+    if (!cs) {
+      cs = $.jStorage.get("campaigns");
+    } else {
+      $(".send").append("<span style='color:green;'>&#10004;</span>");
+    }
+    $.each(cs, function(i,c){
+        console.log(c.name);
+        var status = campaignState(c);
+        done = status.done
+        notdone = status.notdone
+        $(".campaignlist").append(`<pre class='singlecampaign' name='${c.name}' style='padding:5px'> * ${c.name} : <span class='count'>${done}</span>/${done+notdone} <button class='start'>Start</button> <button class='pause'>Pause</button> <button class='delete'>Delete</button> <br><span class='live'></span></pre>`);
+        $(".campaignlist").show();
+
+    });
+    defineStartPause();
+};
+
+
+function defineStartPause() {
+    $("button.start").off("click");
+    $("button.pause").off("click");
+    $("button.delete").off("click");
+    $("button.start").on("click", function(e) {
+        el = $(e.currentTarget);
+        console.log("start", el.parent().attr("name"));
+        if (window.runningcampaign) {
+            alert("There's a campaign already running. Stop it before starting.");
+            return;
+        }
+        name = el.parent().attr("name");
+        window.runningcampaign = name;
+        window.campaign = getCampaign(name);
+        window.timer = setInterval(sendMessage, window.campaign.delay * 1000);
+        el.parent().css("background-color", "lightgreen")
+        el.parent().find(".live").append(`   - Sending messages with ${window.campaign.delay} sec interval.\n`)
+    });
+    $("button.pause").on("click", function(e) {
+        el = $(e.currentTarget);
+        console.log("pause", el.parent().attr("name"));
+        clearInterval(window.timer);
+        window.timer = null;
+        window.campaign = null;
+        window.runningcampaign = null;
+        el.parent().css("background-color", "white")
+        //alert("Paused sending messages. You can contiune anytime by pressing start again.")
+        init2()
+    });
+
+    $("button.delete").on("click", function(e) {
+        el = $(e.currentTarget);
+        if (!confirm("Delete this campaign?"))
+          return
+        console.log("delete", el.parent().attr("name"));
+        clearInterval(window.timer);
+        window.timer = null;
+        window.campaign = null;
+        window.runningcampaign = null;
+        deleteCampaign(el.parent().attr("name"));
+        el.parent().find(".live").append(`Deleting..`)
+        el.parent().css("background-color", "#ee9999")
+        setTimeout(function(){init2()}, 2000);
+    });
+
+}
+
+function getCampaign(name){
+    v = null;
+    $.each($.jStorage.get("campaigns"), function(i, c){
+        if (c.name === name) {v = c}
+    })
+    return v;
+}
+
+function saveCampaign(name) {
+    data = $.jStorage.get("campaigns");
+    $.each(data, function(i, c){
+        if (c.name === name) {c.messages = window.campaign.messages}
+    });
+    $.jStorage.set("campaigns", data);
+}
+
+function deleteCampaign(name) {
+  v = [];
+  $.each($.jStorage.get("campaigns"), function(i, c){
+      if (c.name === name) {// do nothing
+      } else {
+        v.push(c)
+      }
+  })
+  $.jStorage.set("campaigns",v);
+  return true;
+}
+
+function campaignState(c) {
+    d = 0;
+    nd = 0;
+    $.each(c.messages, function(i,m) {
+        if (m.sent)
+            d += 1;
+        else
+            nd += 1;
+    });
+    v = {}
+    v.done = d;
+    v.notdone = nd;
+    return v
+}
+window.c = campaignState
+
+// use your spreadsheet id here
+function getData(id, callback) {
+  $.googleSheetToJSON(id)
+    .done(function(rows){
+        // each row is a row of data from the spreadsheet
+        console.log(rows);
+        console.log(rows[0]);
+        callback(rows);
+    })
+    .fail(function(err){
+        console.log('error!', err);
+        callback(null);
+    });
+  }
+
+
+function sendMessage() {
+    console.log("sending mesage");
+    index = -1;
+    $.each(window.campaign.messages, function(i,m) {
+        if (m.sent === false && index === -1) {
+            index = i;
+        }
+    });
+    if (index === -1) {
+        //completed.
+        $(`pre[name="${window.campaign.name}"]`).find(".live").append(`Completed sending all messages.\n`)
+        $(`pre[name="${window.campaign.name}"]`).find("button.pause").trigger("click")
+        return;
+    }
+
+    $(`pre[name="${window.campaign.name}"]`).find(".live").append(`   - sent message ${index}.\n`);
+    number = window.campaign.messages[index].to.replace(/ /g,"");
+    msg = encodeURI(window.campaign.messages[index].message);
+    $.get(`http://localhost:8766/?number=${number}&message=${msg}`);
+    window.campaign.messages[index].sent = true;
+    data = campaignState(window.campaign)
+    $(`pre[name="${window.campaign.name}"]`).find(".live").html(`   - Sending messages (${data.done}/${data.done+data.notdone}) <span class="spinner">  </span>\n`)
+    saveCampaign(window.runningcampaign);
+}
+
+$(document).ready(function(){
+
+
+    $(".campaignmessage").on("keyup", function(){
+        $(".count").html(`${$(".campaignmessage").val().length}/150 characters.`);
+        $.jStorage.set("message", $(".campaignmessage").val());
+    })
+
+    $(".loadbtn").on("click", function() {
+        googleLogin();
+    });
+
+    $(".campaignbtn").on("click", function() {
+        if ($(".campaignmessage").val().length == 0) {
+            alert("Error: Empty message. Please fill in a message to be sent.")
+            return
+        }
+        delay = $("input[name=delay]").val() || 5;
+        delay = parseInt(delay);
+        if (delay === NaN) {delay = 5;}
+        campaigns = $.jStorage.get("campaigns") || [];
+        messages = []
+        template = $(".campaignmessage").val()
+        $.each($.jStorage.get("contactlist"), function(i,contact){
+            message = {
+                to: contact.phone,
+                message: template.replace(/{{name}}/g, contact.name),
+                sent: false
+            }
+            messages.push(message)
+        });
+        campaigns.push({name: `campaign-${new Date().toJSON()}`, delay:delay, messages: messages});
+        $.jStorage.set("campaigns", campaigns);
+        console.log("Created", campaigns);
+        init2(campaigns);
+    });
+
+    init0();
+
+});
+</script>
