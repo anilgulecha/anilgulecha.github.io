@@ -44,15 +44,26 @@
 <title>Automated sms campaign from your phone number using google sheets as contact list.</title>
 <body>
 <div class="container">
- <h1><img src="icon.svg" width=80 />SMS sender</h1>
- <p>Create and send out sms campaigns using <b>your phone number</b> in 3 easy steps.</p>
- <h2 class="import"> 1. Import </h2>
-  <p>Create your contact list on google sheets, and use it by clicking the button below.</p>
+<h1><img src="icon.svg" width=80 />SMS sender</h1>
+<p>Create and send out sms campaigns using <b>your phone number</b> in 3 easy steps.</p>
+<h2 class="send"> 1. Install app and create contactlist </h2>
+ <p>Please make sure you have the <a href="https://play.google.com/store/apps/details?id=com.bogdan.sms" target="_blank">app</a> installed and running, before you click on start. </p>
+ <a href="https://play.google.com/store/apps/details?id=com.bogdan.sms" target="_blank"><img src="play.png" width="200"/></a><br>
+ <img src="sms.png" width="250"/>
+ <p>Create your contact list on google sheets. It should have 2 columns: name and phone:</p>
+ <img src="googlesheet.png"/>
+ <hr>
+ <h2 class="import"> 2. Import </h2>
+  <p>Import the contact list by selecting the google sheet.</p>
   <p><button class="loadbtn">List google sheets</button></p>
   <pre class="sheetlisting"></pre>
   <p class="importstatus" style="color:green"></p>
  <hr>
- <h2 class="create"> 2. Create campaign </h2>
+ <h2 class="create"> 3. Create campaign & send</h2>
+ <h3>Running campaigns: </h3>
+ <div class="campaignlist" style="display:none">
+ </div>
+ <h3>Created a new campaign: </h3>
  <div class="campaign" style="display: none">
      <p>Enter your campaign message here. use <i>{{name}}</i> for where you want the name to appear</p>
      <textarea class="campaignmessage" rows=5>Hi {{name}}, we'd like to wish you a happy new year!</textarea><br><i class="count"></i>
@@ -60,13 +71,7 @@
      <p><button class="campaignbtn">Create campaign</button></p>
  </div>
  <hr>
- <h2 class="send"> 3. Install app and Send sms </h2>
- <p>Please make sure you have the <a href="https://play.google.com/store/apps/details?id=com.bogdan.sms" target="_blank">app</a> installed and running, before you click on start. </p>
- <a href="https://play.google.com/store/apps/details?id=com.bogdan.sms" target="_blank"><img src="play.png" width="200"/></a><br>
- <img src="sms.png" width="250"/>
- <div class="campaignlist" style="display:none">
- </div>
- <hr>
+ <p style="font-size:0.75em">Created by Anil Gulecha.<br/>Contact: <a href="mailto:anil.verve@gmail.com">anil.verve@gmail.com</a></p>
 </div>
 </body>
 <script>
@@ -139,7 +144,7 @@ function loadContacts(e) {
 function init0() {
     contactlist = $.jStorage.get("contactlist");
     if (contactlist) {
-        $(".importstatus").html(`<b>${contactlist.length}</b> contacts imported from sheet <code><b>${atob($.jStorage.get('sheetname'))}</b></code>`)
+        $(".importstatus").html(`<b>${contactlist.length}</b> contacts currently imported from sheet <code><b>${atob($.jStorage.get('sheetname'))}</b></code>`)
         $(".import").append("<span style='color:green;'>&#10004;</span>")
         $("input[name=gsheetsid]").val($.jStorage.get('sheetid'))
         init1();
@@ -173,7 +178,7 @@ function init2(cs){
         var status = campaignState(c);
         done = status.done
         notdone = status.notdone
-        $(".campaignlist").append(`<pre class='singlecampaign' name='${c.name}' style='padding:5px'> * ${c.name} : <span class='count'>${done}</span>/${done+notdone} <button class='start'>Start</button> <button class='pause'>Pause</button> <button class='delete'>Delete</button> <br><span class='live'></span></pre>`);
+        $(".campaignlist").append(`<pre class='singlecampaign' name='${c.name}' style='padding:5px'><p> * ${c.name} : <span class='count'>${done}</span>/${done+notdone}</p><button class='start'>Start</button> <button class='pause'>Pause</button> <button class='delete'>Delete</button><span class='live'></span></pre>`);
         $(".campaignlist").show();
 
     });
