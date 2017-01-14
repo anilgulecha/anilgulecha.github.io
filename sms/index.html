@@ -178,7 +178,7 @@ function init2(cs){
         var status = campaignState(c);
         done = status.done
         notdone = status.notdone
-        $(".campaignlist").append(`<pre class='singlecampaign' name='${c.name}' style='padding:5px'><p> * ${c.name} : <span class='count'>${done}</span>/${done+notdone}</p><button class='start'>Start</button> <button class='pause'>Pause</button> <button class='delete'>Delete</button><span class='live'></span></pre>`);
+        $(".campaignlist").append(`<pre class='singlecampaign' name='${c.name}' style='padding:5px'><p> * ${c.name} : <span class='count'>${done}</span>/${done+notdone}</p><button class='start'>Start</button> <button class='pause'>Pause</button> <button class='edit'>Edit</button> <button class='delete'>Delete</button><br><span class='live'></span></pre>`);
         $(".campaignlist").show();
 
     });
@@ -190,6 +190,7 @@ function defineStartPause() {
     $("button.start").off("click");
     $("button.pause").off("click");
     $("button.delete").off("click");
+    $("button.edit").off("click");
     $("button.start").on("click", function(e) {
         el = $(e.currentTarget);
         console.log("start", el.parent().attr("name"));
@@ -230,6 +231,20 @@ function defineStartPause() {
         el.parent().css("background-color", "#ee9999")
         setTimeout(function(){init2()}, 2000);
     });
+    $("button.edit").on("click", function(e) {
+        el = $(e.currentTarget);
+        name = el.parent().attr("name");
+        val = prompt("Enter new delay (seconds:");
+        if (!val || parseInt(val) == NaN ) {
+          return
+        }
+        else {
+          delay = parseInt(val);
+          data = getCampaign(name);
+          data.delay = delay
+          saveCampaign(name, data)
+        }
+    });
 
 }
 
@@ -241,10 +256,18 @@ function getCampaign(name){
     return v;
 }
 
-function saveCampaign(name) {
+function saveCampaign(name, camp) {
+    if (camp == undefined) {
+      source = window.campaign
+    } else {
+      source = camp
+    }
     data = $.jStorage.get("campaigns");
     $.each(data, function(i, c){
-        if (c.name === name) {c.messages = window.campaign.messages}
+        if (c.name === name) {
+          c.messages = source.messages
+          c.delay = source.delay
+        }
     });
     $.jStorage.set("campaigns", data);
 }
