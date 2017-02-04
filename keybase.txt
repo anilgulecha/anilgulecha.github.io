@@ -1,0 +1,49 @@
+I hereby claim:
+
+  * I am an admin of http://www.gulecha.org
+  * I am anilg (https://keybase.io/anilg) on keybase.
+  * I have a public key ASCUzwhUMgT_y5DXtD1xqz4to6SEMClHaE1f_Vz64T9Jdwo
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01012d2c02c2d345f46ed48a5b7d83e4e90e347dea0c46d6be0e850c684be24e90570a",
+            "host": "keybase.io",
+            "kid": "012094cf08543204ffcb90d7b43d71ab3e2da3a484302947684d5ffd5cfae13f49770a",
+            "uid": "d26ca51d44e1659d05dc64d4f916fe19",
+            "username": "anilg"
+        },
+        "service": {
+            "hostname": "www.gulecha.org",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.18"
+    },
+    "ctime": 1486186449,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1486186369,
+        "hash": "4c0a4dec4178236d228a9303f5c51133506b520baf8d17e41ada5a06fc725f8d25bee59434937d571500b30e8cecc223eaafd22ab433df961ac6011c7e8b5425",
+        "seqno": 834781
+    },
+    "prev": "23b7a227656a91bb2487f26083f71d5ca32e1ad34f1e627b38d800d30cd5c18e",
+    "seqno": 7,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEglM8IVDIE/8uQ17Q9cas+LaOkhDApR2hNX/1c+uE/SXcKp3BheWxvYWTFAvN7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxMmQyYzAyYzJkMzQ1ZjQ2ZWQ0OGE1YjdkODNlNGU5MGUzNDdkZWEwYzQ2ZDZiZTBlODUwYzY4NGJlMjRlOTA1NzBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwOTRjZjA4NTQzMjA0ZmZjYjkwZDdiNDNkNzFhYjNlMmRhM2E0ODQzMDI5NDc2ODRkNWZmZDVjZmFlMTNmNDk3NzBhIiwidWlkIjoiZDI2Y2E1MWQ0NGUxNjU5ZDA1ZGM2NGQ0ZjkxNmZlMTkiLCJ1c2VybmFtZSI6ImFuaWxnIn0sInNlcnZpY2UiOnsiaG9zdG5hbWUiOiJ3d3cuZ3VsZWNoYS5vcmciLCJwcm90b2NvbCI6Imh0dHA6In0sInR5cGUiOiJ3ZWJfc2VydmljZV9iaW5kaW5nIiwidmVyc2lvbiI6MX0sImNsaWVudCI6eyJuYW1lIjoia2V5YmFzZS5pbyBnbyBjbGllbnQiLCJ2ZXJzaW9uIjoiMS4wLjE4In0sImN0aW1lIjoxNDg2MTg2NDQ5LCJleHBpcmVfaW4iOjUwNDU3NjAwMCwibWVya2xlX3Jvb3QiOnsiY3RpbWUiOjE0ODYxODYzNjksImhhc2giOiI0YzBhNGRlYzQxNzgyMzZkMjI4YTkzMDNmNWM1MTEzMzUwNmI1MjBiYWY4ZDE3ZTQxYWRhNWEwNmZjNzI1ZjhkMjViZWU1OTQzNDkzN2Q1NzE1MDBiMzBlOGNlY2MyMjNlYWFmZDIyYWI0MzNkZjk2MWFjNjAxMWM3ZThiNTQyNSIsInNlcW5vIjo4MzQ3ODF9LCJwcmV2IjoiMjNiN2EyMjc2NTZhOTFiYjI0ODdmMjYwODNmNzFkNWNhMzJlMWFkMzRmMWU2MjdiMzhkODAwZDMwY2Q1YzE4ZSIsInNlcW5vIjo3LCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQDLFNgT6TXRYyiql7YU48Qu1pMK5evQhEDhTPtlnfgvQRDo11eFuQVk+bYD2xD1CcXdtTHp7Up+5NJGuwSwMfAGoc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCCmuubQP85kMO/jsB6GlYBfif3WW9QOLhDGdB08XeF6bKN0YWfNAgKndmVyc2lvbgE=
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/anilg
+
