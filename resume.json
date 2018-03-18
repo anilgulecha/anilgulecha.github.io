@@ -41,6 +41,7 @@
       "endDate": "",
       "summary": "Joined the startup early, and implement multiple projects. Ownership all across the product-line. I have a hand in all parts of the project given the speed with which we built multiple products as we expanded.",
       "highlights": [
+        "Lead the application and system to scale take-home tests. A system to handle load from 10s to 100s to 1000s of concurrent containers.",
         "Write and maintain the enterprise-app of the company, including having initially ported it to RoR",
         "Write and maintain the candidate side app, used thousands of times a day.",
         "Built SudoRank, a framework to vet for DevOps roles."
