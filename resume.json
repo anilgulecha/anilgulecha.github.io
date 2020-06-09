@@ -1,12 +1,12 @@
 {
   "basics": {
     "name": "Anil Gulecha",
-    "label": "Software Architect",
+    "label": "Experienced Engineering Leadership",
     "picture": "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/3/000/230/35a/2812061.jpg",
     "email": "anil.verve@gmail.com",
     "phone": "+91-9480240751",
     "website": "http://www.gulecha.org",
-    "summary": "Passionate about startups, internet and media -- and areas where these intersect. I will fit best in small teams, companies that are fast-paced, build products and components as micro-services, and tend to use open source technologies.",
+    "summary": "Passionate about startups, internet and media -- and areas where these intersect. Evangelist for using FOSS.  Build and lead teams to success in sustainable way. Aiming to be world-class is the wider goal for any enigneering goal or ambition.",
     "location": {
       "address": "Jayanagar",
       "postalCode": "560011",
@@ -35,14 +35,15 @@
   "work": [
     {
       "company": "HackerRank",
-      "position": "Engineering Manager",
+      "position": "Sr. Engineering Manager",
       "website": "https://www.hackerrank.com",
       "startDate": "2013",
       "endDate": "",
       "summary": "Joined the startup early. Ownership, implementation and maintainership of  multiple projects and industry-defining productlines across the company.",
       "highlights": [
-        "Lead and mentor the system to scale take-home tests.",
-        "A system to handle load from 10s to 100s to 1000s of concurrent containers.",
+        "Build and lead tight teams across product lines and verticles. Set the vision, and execute on top of that.",
+        "Grown from a senior IC. Lead and mentor the system to scale take-home tests.",
+        "A system to handle load from 10s to 100s to 1000s of concurrent pinned user VM sessions with guaranteed SLAs.",
         "Write and maintain the enterprise-app of the company, including having initially ported it to RoR",
         "Write and maintain the candidate side app, used thousands of times a day.",
         "Built SudoRank, a framework to vet for DevOps roles."
